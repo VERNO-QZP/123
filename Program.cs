@@ -1,15 +1,27 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace ConsoleApp3
+namespace ConsoleApp17
 {
     internal class Program
     {
+        static void Main(string[] args)
+        {
+            Car car = new Car("Toyota", 180, 4);
+            car.Print();
+            car.Move();
 
+            Console.WriteLine();
+
+            Bike bike = new Bike("Stels", 25, true);
+            bike.Print();
+            bike.Move();
+
+            Console.WriteLine();
+
+            Car badCar = new Car("", -5, 0);
+            badCar.Print();
+            badCar.Move();
+        }
     }
 
     public class Vehicle
@@ -19,7 +31,7 @@ namespace ConsoleApp3
 
         public Vehicle(string brand, int maxSpeed)
         {
-            if (Brand == "")
+            if (brand == "")
             {
                 Brand = "Неизвестно";
             }
@@ -40,12 +52,12 @@ namespace ConsoleApp3
 
         public virtual void Move()
         {
-            Console.WriteLine("транспорт едет");
+            Console.WriteLine("Транспорт едет");
         }
 
         public virtual void Print()
         {
-            Console.WriteLine($"Марка: {Brand}, макс.скорость: {MaxSpeed} км / ч");
+            Console.WriteLine($"Марка: {Brand}, макс. скорость: {MaxSpeed} км/ч");
         }
     }
 
@@ -55,9 +67,9 @@ namespace ConsoleApp3
 
         public Car(string brand, int maxSpeed, int doors) : base(brand, maxSpeed)
         {
-            if (Doors <= 0)
+            if (doors <= 0)
             {
-                doors = 4;
+                Doors = 4;
             }
             else
             {
@@ -68,7 +80,7 @@ namespace ConsoleApp3
         public override void Move()
         {
             base.Move();
-            Console.WriteLine("машина едет по дороге");
+            Console.WriteLine("Машина едет по дороге");
         }
     }
 
@@ -76,22 +88,15 @@ namespace ConsoleApp3
     {
         public bool HasBasket;
 
-        public Bike(string brand, int maxSpeed, bool hasBasket) : base(brand, maxSpeed, hasBasket)
+        public Bike(string brand, int maxSpeed, bool hasBasket) : base(brand, maxSpeed)
         {
-            if (Doors <= 0)
-            {
-                doors = 4;
-            }
-            else
-            {
-                Doors = doors;
-            }
+            HasBasket = hasBasket;
         }
 
         public override void Move()
         {
             base.Move();
-            Console.WriteLine("машина едет по дороге");
+            Console.WriteLine("Велосипед крутит педали");
         }
     }
 }
